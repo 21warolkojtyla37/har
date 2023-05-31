@@ -20,8 +20,16 @@ if (!isset($_COOKIE["user"])) {
         require "navbar.php";
         ?>
         <div class="main_index">
-            <div>
-                <h1>Test</h1>
+            <div class="title_block">
+                <h1>HAR</h1>
+            </div>
+            <div class="whats_new">
+                <h3>Nowości i zmiany</h3><br>
+                <p>31.05.2023</p>
+                <p>Koniec projektu</p>
+                <br><hr style="margin-left: 11.25vw; width: 30vw;"><br>
+                <p>30.05.2023</p>
+                <p>Rozpoczęcie projektu</p>
             </div>
         </div>
     </div>
