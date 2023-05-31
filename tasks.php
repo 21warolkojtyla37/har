@@ -36,16 +36,19 @@ require_once "config.php";
                 ?>
                 <table class="crud">
                     <thead>
-                        <td width="25%">
+                        <td width="20%">
                             <p>Nazwa i opis</p>
+                        </td>
+                        <td width="20%">
+                            <p>Od kiedy?</p>
                         </td>
                         <td width="20%">
                             <p>Do kiedy?</p>
                         </td>
-                        <td width="25%">
+                        <td width="20%">
                             <p>Użytkownik przypisany</p>
                         </td>
-                        <td width="30%">
+                        <td width="25%">
                             Akcje
                         </td>
                     </thead>
@@ -71,6 +74,9 @@ require_once "config.php";
                         echo "<tr>";
                         echo "<td>";
                         echo "<p>" . $row['name'] . "<hr>" . $row['description'] . "</p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<p>" . $row['from_to'] . "</p>";
                         echo "</td>";
                         echo "<td>";
                         echo "<p>" . $row['due_to'] . "</p>";

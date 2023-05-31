@@ -42,10 +42,10 @@ require_once "config.php";
                         <td width="15%">
                             <p>Nazwisko</p>
                         </td>
-                        <td width="30%">
+                        <td width="40%">
                             <p>Email</p>
                         </td>
-                        <td width="40%">
+                        <td width="30%">
                             Akcje
                         </td>
                     </thead>

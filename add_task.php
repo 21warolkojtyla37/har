@@ -24,6 +24,7 @@ if (isset($_GET['id'])) {
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $name = $_POST['name'];
     $descirption = $_POST['description'];
+    $from_to = $_POST['date_from'];
     $due_to = $_POST['date'];
     $assigned_to = "";
 
@@ -46,17 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             exit();
         }
 
-        $sql = "UPDATE tasks SET name = ?, description = ?, due_to = ?, assigned_to = ? WHERE id = ?";
+        $sql = "UPDATE tasks SET name = ?, description = ?, from_to = ?, due_to = ?, assigned_to = ? WHERE id = ?";
     } else {
-        $sql = "INSERT INTO tasks SET name = ?, description = ?, due_to = ?, assigned_to = ?";
+        $sql = "INSERT INTO tasks SET name = ?, description = ?, from_to = ?, due_to = ?, assigned_to = ?";
     }
 
     $stmt = $mysqli->prepare($sql);
 
     if (isset($id)) {
-        $stmt->bind_param("ssssi", $name, $descirption, $due_to, $assigned_to, $id);
+        $stmt->bind_param("sssssi", $name, $descirption, $from_to, $due_to, $assigned_to, $id);
     } else {
-        $stmt->bind_param("ssss", $name, $descirption, $due_to, $assigned_to);
+        $stmt->bind_param("sssss", $name, $descirption, $from_to, $due_to, $assigned_to);
     }
     $stmt->execute();
 
@@ -108,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     echo "<div class=\"editor\">";
                     echo "<input name=\"name\" class=\"editori\" placeholder=\"Nazwa zadania\" value=\"" . $editTask['name'] . "\">";
                     echo "<input name=\"description\" class=\"editori\" placeholder=\"Opis zadania\" value=\"" . $editTask['description'] . "\">";
+                    echo "<input type=\"datetime-local\" name=\"date_from\" class=\"editori\" placeholder=\"Czas rozpoczęcia\" value=\"" . $editTask['from_to'] . "\">";
                     echo "<input type=\"datetime-local\" name=\"date\" class=\"editori\" placeholder=\"Czas na wykonanie\" value=\"" . $editTask['due_to'] . "\">";
                     echo "<div id='min'><p>Przypisane do: </p><span id='mind'></span></div>";
                     $usersQuery = $mysqli->prepare("SELECT * FROM users");
@@ -129,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     echo "<div class=\"editor\">";
                     echo "<input name=\"name\" class=\"editori\" placeholder=\"Nazwa Zadania\">";
                     echo "<input name=\"description\" class=\"editori\" placeholder=\"Opis Zadania\">";
+                    echo "<input type=\"datetime-local\" name=\"date_from\" class=\"editori\" placeholder=\"Czas rozpoczęcia\">";
                     echo "<input type=\"datetime-local\" name=\"date\" class=\"editori\" placeholder=\"Czas na wykonanie\">";
                     echo "<div id='min'><p>Przypisane do: </p><span id='mind'></span></div>";
                     $usersQuery = $mysqli->prepare("SELECT * FROM users");
